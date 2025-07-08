@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../../Hook/UseAuth';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
 
     // Here the useAuth is custom hook .
     const { signIn } = UseAuth()
+    const Navigate = useNavigate()
 
     const onSubmmit = data => {
         console.log(data);
@@ -22,6 +23,7 @@ const Login = () => {
                 console.log(result.user);
                 alert("Sign in successfully")
             })
+               Navigate("/")
             .catch(error => {
                 console.log(error)
             })

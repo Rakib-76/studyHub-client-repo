@@ -1,20 +1,20 @@
 import React from 'react';
 import UseAuth from '../Hook/UseAuth';
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router'; // fixed from 'react-router'
 
-const PrivateRoute = ({Children}) => {
-    const {loading, user} = UseAuth();
+const PrivateRoute = ({ children }) => {
+  const { loading, user } = UseAuth();
+  const location = useLocation();
 
-    
-if(loading){
-    return <span className="loading loading-spinner loading-xl"></span>
-}
+  if (loading) {
+    return <span className="loading loading-spinner loading-xl"></span>;
+  }
 
-// Here if user not exist then it will be shift login page and exist return children 
-if(!user) {
-    <Navigate to='/login'></Navigate>
-}
-    return Children;
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
 };
 
 export default PrivateRoute;
