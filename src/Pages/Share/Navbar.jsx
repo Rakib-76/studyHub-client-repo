@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
-import ProFastLogo from './ProFastLogo/ProFastLogo';;
+import ProFastLogo from './StudyHubLogo/StudyHubLogo';;
 import UseAuth from '../../Hook/UseAuth';
+import { FaUserCircle } from "react-icons/fa";
+import StudyHubLogo from './StudyHubLogo/StudyHubLogo';
 
 const Navbar = () => {
     const navItems = <>
@@ -44,23 +46,39 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><ProFastLogo></ProFastLogo></a>
+                <a className="btn btn-ghost text-xl"><StudyHubLogo></StudyHubLogo></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navItems}
                 </ul>
             </div>
-            <div className='navbar-end'>
+            <div className='navbar-end flex items-center gap-2'>
+                <div>
+                    {user && user.photoURL ? (
+                        <img
+                            src={user.photoURL}
+                            alt={user.displayName || "User"}
+                            title={user.displayName}
+                            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+                        />
+                    ) : (
+                        <FaUserCircle title="Guest" className="w-full h-full text-4xl text-gray-500" />
+                    )}
 
-                {
-                    user ? <button
-                        //   onClick={handleLogout}
-                        className='btn btn-primary px-10' onClick={handleLogOut}>LogOut</button> : <span className='flex items-center  gap-1'>
-                        <Link to='/login'> <button className='btn btn-primary'>Login</button> </Link>
+                </div>
 
-                    </span>
-                }
+
+                <div>
+                    {
+                        user ? <button
+                            //   onClick={handleLogout}
+                            className='btn btn-primary px-10' onClick={handleLogOut}>LogOut</button> : <span className='flex items-center  gap-1'>
+                            <Link to='/login'> <button className='btn btn-primary'>Login</button> </Link>
+
+                        </span>
+                    }
+                </div>
             </div>
         </div>
     );

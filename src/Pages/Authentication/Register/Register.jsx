@@ -18,82 +18,82 @@ const Register = () => {
   const [uploading, setUploading] = useState(false);
   const [photoURL, setPhotoURL] = useState("");
 
-  const imgbbApiKey = "084cb56f318d588f7d164743ed1c751f"; 
+  const imgbbApiKey = "084cb56f318d588f7d164743ed1c751f";
 
-  const handlePhotoUpload = async (file) => {
-    const formData = new FormData();
-    formData.append("image", file);
+  // const handlePhotoUpload = async (file) => {
+  //   const formData = new FormData();
+  //   formData.append("image", file);
+  //   setUploading(true);
+
+  //   try {
+  //     const res = await axios.post(
+  //       `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+  //       formData
+  //     );
+  //     setPhotoURL(res.data.data.url);
+  //   } catch (error) {
+  //     console.error("Image upload error:", error);
+  //     alert("Photo upload failed.");
+  //   } finally {
+  //     setUploading(false);
+  //   }
+  // };
+
+  const onSubmit = async (data) => {
     setUploading(true);
-
     try {
-      const res = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
-        formData
-      );
-      setPhotoURL(res.data.data.url);
+      let finalPhoto = data.photoLink; // Default to direct link
+
+      // If user selected a file, upload it to imgbb first
+      if (data.photoFile && data.photoFile.length > 0) {
+        const file = data.photoFile[0];
+        const formData = new FormData();
+        formData.append("image", file);
+
+        const res = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+          formData
+        );
+
+        if (res.data.success) {
+          finalPhoto = res.data.data.url;
+          console.log("Image uploaded to imgbb:", finalPhoto);
+        } else {
+          alert("Image upload failed.");
+          return;
+        }
+      }
+
+      if (!finalPhoto) {
+        alert("Please upload a photo or provide a valid photo link.");
+        return;
+      }
+
+      const result = await createUser(data.email, data.password);
+      const user = result.user;
+
+      await updateProfile(user, {
+        displayName: data.name,
+        photoURL: finalPhoto,
+      });
+
+      console.log("Registered user:", {
+        name: data.name,
+        email: data.email,
+        photo: finalPhoto,
+        role: data.role,
+      });
+
+      alert("User registered successfully!");
+      reset();
+      setPhotoURL("");
     } catch (error) {
-      console.error("Image upload error:", error);
-      alert("Photo upload failed.");
+      console.error("Registration error:", error.message);
+      alert("Registration failed: " + error.message);
     } finally {
       setUploading(false);
     }
   };
-
-const onSubmit = async (data) => {
-  setUploading(true);
-  try {
-    let finalPhoto = data.photoLink; // Default to direct link
-
-    // If user selected a file, upload it to imgbb first
-    if (data.photoFile && data.photoFile.length > 0) {
-      const file = data.photoFile[0];
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const res = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
-        formData
-      );
-
-      if (res.data.success) {
-        finalPhoto = res.data.data.url;
-        console.log("Image uploaded to imgbb:", finalPhoto);
-      } else {
-        alert("Image upload failed.");
-        return;
-      }
-    }
-
-    if (!finalPhoto) {
-      alert("Please upload a photo or provide a valid photo link.");
-      return;
-    }
-
-    const result = await createUser(data.email, data.password);
-    const user = result.user;
-
-    await updateProfile(user, {
-      displayName: data.name,
-      photoURL: finalPhoto,
-    });
-
-    console.log("Registered user:", {
-      name: data.name,
-      email: data.email,
-      photo: finalPhoto,
-      role: data.role,
-    });
-
-    alert("User registered successfully!");
-    reset();
-    setPhotoURL("");
-  } catch (error) {
-    console.error("Registration error:", error.message);
-    alert("Registration failed: " + error.message);
-  } finally {
-    setUploading(false);
-  }
-};
 
 
   return (
@@ -163,7 +163,6 @@ const onSubmit = async (data) => {
               <option value="">-- Choose Role --</option>
               <option value="student">Student</option>
               <option value="tutor">Tutor</option>
-              <option value="admin">Admin</option>
             </select>
             {errors.role && <p className="text-red-500">Role is required</p>}
 
