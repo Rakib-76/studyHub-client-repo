@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import UseAuth from '../../../Hook/UseAuth';
-import { Link } from 'react-router'; // ✅ Fix router import
+import { Link, useNavigate } from 'react-router'; // Correct import
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from 'axios';
+import useAxios from '../../../hooks/UseAxios';
 import { updateProfile } from 'firebase/auth';
+import UseAuth from '../../../Hook/UseAuth';
 
 const Register = () => {
   const {
@@ -17,35 +18,41 @@ const Register = () => {
   const { createUser } = UseAuth();
   const [uploading, setUploading] = useState(false);
   const [photoURL, setPhotoURL] = useState("");
+  const navigate = useNavigate();
 
-  const imgbbApiKey = "084cb56f318d588f7d164743ed1c751f";
+  const axiosInstance = useAxios();
+  const imgbbApiKey = import.meta.env.VITE_image_upload_key;
 
-  // const handlePhotoUpload = async (file) => {
-  //   const formData = new FormData();
-  //   formData.append("image", file);
-  //   setUploading(true);
+  const handlePhotoUpload = async (e) => {
+    const image = e.target.files[0];
+    if (!image) return;
 
-  //   try {
-  //     const res = await axios.post(
-  //       `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
-  //       formData
-  //     );
-  //     setPhotoURL(res.data.data.url);
-  //   } catch (error) {
-  //     console.error("Image upload error:", error);
-  //     alert("Photo upload failed.");
-  //   } finally {
-  //     setUploading(false);
-  //   }
-  // };
+    const formData = new FormData();
+    formData.append("image", image);
+    setUploading(true);
+
+    try {
+      const res = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+        formData
+      );
+      setPhotoURL(res.data.data.url);
+      console.log("📸 Image uploaded:", res.data.data.url);
+    } catch (error) {
+      console.error("❌ Image upload failed:", error);
+      alert("Photo upload failed. Try again.");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const onSubmit = async (data) => {
     setUploading(true);
     try {
-      let finalPhoto = data.photoLink; // Default to direct link
+      let finalPhoto = photoURL || data.photoLink || "";
 
-      // If user selected a file, upload it to imgbb first
-      if (data.photoFile && data.photoFile.length > 0) {
+      // If photo not set yet but file selected, upload it here
+      if (data.photoFile && data.photoFile.length > 0 && !finalPhoto) {
         const file = data.photoFile[0];
         const formData = new FormData();
         formData.append("image", file);
@@ -57,61 +64,79 @@ const Register = () => {
 
         if (res.data.success) {
           finalPhoto = res.data.data.url;
-          console.log("Image uploaded to imgbb:", finalPhoto);
         } else {
           alert("Image upload failed.");
+          setUploading(false);
           return;
         }
       }
 
       if (!finalPhoto) {
         alert("Please upload a photo or provide a valid photo link.");
+        setUploading(false);
         return;
       }
 
+      // Create Firebase user
       const result = await createUser(data.email, data.password);
       const user = result.user;
 
+      // Update Firebase user profile
       await updateProfile(user, {
         displayName: data.name,
         photoURL: finalPhoto,
       });
 
-      console.log("Registered user:", {
+      // Prepare user info to save in MongoDB
+      const userInfo = {
         name: data.name,
         email: data.email,
-        photo: finalPhoto,
+        photoURL: finalPhoto,
         role: data.role,
-      });
+        created_at: new Date().toISOString(),
+        last_log_in: new Date().toISOString(),
+        uid: user.uid,
+      };
 
-      alert("User registered successfully!");
+      // Post user info to backend (MongoDB)
+      const response = await axiosInstance.post('/users', userInfo);
+      console.log('MongoDB response:', response.data);
+
+      if (response.data.insertedCount === 1 || response.data.inserted === false) {
+        // insertedCount === 1 means new user inserted
+        // inserted === false means user existed, backend returns that
+        alert(response.data.inserted === false ? "User already exists" : "Registration successful!");
+      } else {
+        alert("Unexpected response from server");
+      }
+
       reset();
       setPhotoURL("");
+      navigate('/'); // Redirect home or any page
     } catch (error) {
-      console.error("Registration error:", error.message);
+      console.error("Registration failed:", error);
       alert("Registration failed: " + error.message);
     } finally {
       setUploading(false);
     }
   };
 
-
   return (
-    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-base-100 w-full max-w-sm shadow-2xl mx-auto mt-8">
       <div className="card-body">
-        <h1 className="text-4xl font-semibold text-center mb-4">Create an account</h1>
+        <h1 className="text-4xl font-semibold text-center mb-4">Create an Account</h1>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <fieldset className="space-y-3">
             {/* Name */}
             <label className="label">Name</label>
             <input
-              {...register("name", { required: true, minLength: 5 })}
+              {...register("name", { required: true })}
               type="text"
               className="input input-bordered w-full"
               placeholder="Enter your name"
             />
-            {errors.name && <p className="text-red-500">Name is required (min 5 characters)</p>}
+            {errors.name && <p className="text-red-500">Name is required</p>}
 
             {/* Email */}
             <label className="label">Email</label>
@@ -127,31 +152,35 @@ const Register = () => {
             <label className="label">Password</label>
             <input
               type="password"
-              {...register("password", { required: true, minLength: 8 })}
+              {...register("password", { required: true, minLength: 6 })}
               className="input input-bordered w-full"
               placeholder="Password"
             />
-            {errors.password && (
-              <p className="text-red-500">Password must be at least 8 characters</p>
+            {errors.password?.type === "required" && (
+              <p className="text-red-500">Password is required</p>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-500">Password must be 6 characters or longer</p>
             )}
 
-            {/* Photo Upload */}
+            {/* Profile Picture Upload */}
             <label className="label">Upload Photo</label>
             <input
               type="file"
               accept="image/*"
               {...register("photoFile")}
+              onChange={handlePhotoUpload}
               className="file-input file-input-bordered w-full"
             />
-            {uploading && <p className="text-blue-600 text-sm">Uploading image...</p>}
+            {uploading && <p className="text-blue-500 text-sm">Uploading photo...</p>}
 
-            {/* Or Photo Link */}
-            <label className="label">Or Paste Photo URL</label>
+            {/* Or direct photo link */}
+            <label className="label">Or Photo Link</label>
             <input
               type="text"
-              placeholder="https://..."
               {...register("photoLink")}
               className="input input-bordered w-full"
+              placeholder="https://your-image-link.com"
             />
 
             {/* Role */}
@@ -167,11 +196,15 @@ const Register = () => {
             {errors.role && <p className="text-red-500">Role is required</p>}
 
             {/* Submit */}
-            <button type="submit" className="btn bg-[#caeb66] text-black w-full mt-4">
-              Register
+            <button
+              type="submit"
+              className="btn btn-primary text-black w-full mt-4"
+              disabled={uploading}
+            >
+              {uploading ? "Processing..." : "Register"}
             </button>
 
-            <p className="mt-2 text-xs text-center">
+            <p className="mt-2 text-sm text-center">
               Already have an account?{" "}
               <Link to="/login" className="text-blue-600 btn-link">
                 Login
