@@ -63,7 +63,8 @@ const SocialLogin = () => {
 
         if (role === 'admin') navigate('/dashboard/admin');
         else if (role === 'tutor') navigate('/dashboard/tutor');
-        else navigate('/dashboard/student');
+        // else navigate('/dashboard/student');
+        else navigate('/');
       })
 
       .catch((error) => {

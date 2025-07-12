@@ -4,19 +4,50 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import UseAxiosSecure from './UseAxiosSecure';
 import { auth } from '../Firebase/firebase.init';
 
+// const UseUserRole = () => {
+//   const [role, setRole] = useState(null);
+//   const axiosSecure = UseAxiosSecure();
+//   const [user] = useAuthState(auth);
+
+//   useEffect(() => {
+//     if (user?.email) {
+//       axiosSecure.get(`/users/${user.email}`)
+//         .then(res => setRole(res.data.role));
+//     }
+//   }, [user]);
+
+//   return role;
+// };
+
+// export default UseUserRole;
+
+
 const UseUserRole = () => {
   const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
   const axiosSecure = UseAxiosSecure();
   const [user] = useAuthState(auth);
 
   useEffect(() => {
     if (user?.email) {
       axiosSecure.get(`/users/${user.email}`)
-        .then(res => setRole(res.data.role));
+        .then(res => {
+          const userRole = res.data?.role;
+          setRole(userRole || 'unknown');
+          setLoading(false);
+        })
+        .catch(() => {
+          setRole('unknown'); // fallback so it never stays null
+          setLoading(false);
+        });
+    } else {
+      setRole('unknown'); // no user = fallback role
+      setLoading(false);
     }
   }, [user]);
 
-  return role;
+  return { role, loading }; // ✅ Always return an object
 };
 
-export default UseUserRole;
+
+ export default UseUserRole;
