@@ -1,11 +1,88 @@
-import React from 'react';
+import React from "react";
+import { NavLink } from "react-router";
+import {
+  FaHome,
+  FaBookOpen,
+  FaPlusCircle,
+  FaStickyNote,
+  FaFolderOpen,
+} from "react-icons/fa";
 
 const StudentDashboard = () => {
-    return (
-        <div>
-            <p>This is Student Dashboard</p>
-        </div>
-    );
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 bg-gray-800 text-white flex flex-col">
+        <nav className="flex-1 p-4 space-y-4">
+          {/* Home link */}
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaHome />
+            Home
+          </NavLink>
+
+          <NavLink
+            to="booked-sessions"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaBookOpen />
+            View Booked Sessions
+          </NavLink>
+
+          <NavLink
+            to="create-note"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaPlusCircle />
+            Create Note
+          </NavLink>
+
+          <NavLink
+            to="manage-notes"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaStickyNote />
+            Manage Personal Notes
+          </NavLink>
+
+          <NavLink
+            to="study-materials"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                isActive ? "bg-gray-700" : ""
+              }`
+            }
+          >
+            <FaFolderOpen />
+            View Study Materials
+          </NavLink>
+        </nav>
+      </aside>
+
+      {/* Content area */}
+      <main className="flex-1 p-6 bg-gray-100 overflow-auto">
+        {/* Outlet for nested routes */}
+      </main>
+    </div>
+  );
 };
 
 export default StudentDashboard;

@@ -7,13 +7,26 @@ import AuthLayout from "../Layout/AuthLayout";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
-import DashboardLayout from "../Layout/DashboardLayout";
 import StudentDashboard from "../Pages/Dashboard/Student/StudentDashboard";
 import TutorDashboard from "../Pages/Dashboard/Tutor/TutorDashboard";
 import AdminRoute from "../PrivateRoutes/AdminRoute";
 import AdminDashboard from "../Pages/Dashboard/Admin/AdminDashboard";
 import StudentRoute from "../PrivateRoutes/StudentRoute";
 import TutorRoute from "../PrivateRoutes/TutorRoute";
+import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
+import ViewSession from "../Pages/Dashboard/Tutor/ViewSession";
+import UploadSession from "../Pages/Dashboard/Tutor/UploadSession";
+import ViewALlMateial from "../Pages/Dashboard/Tutor/ViewALlMateial";
+import AdminLayout from "../Layout/AdminLayout";
+import TutorLayout from "../Layout/TutorLayout";
+import StudentLayout from "../Layout/StudentLayout";
+import CreateNote from "../Pages/Dashboard/Student/CreateNote";
+import ViewBookedSessions from "../Pages/Dashboard/Student/ViewBookedSessions";
+import ManageNotes from "../Pages/Dashboard/Student/ManageNotes";
+import ViewAllMaterials from "../Pages/Dashboard/Student/ViewAllMaterials";
+import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers";
+import ViewAllSessions from "../Pages/Dashboard/Admin/ViewAllSessions";
+import AdminViewAllMaterials from "../Pages/Dashboard/Admin/AdminViewAllMaterial";
 
 
 export const router = createBrowserRouter([
@@ -44,33 +57,86 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/dashboard",
-    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+    path: "/dashboard/admin",
+    element: (
+      <PrivateRoute>
+        <AdminRoute>
+          <AdminLayout />
+        </AdminRoute>
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: "admin",
-        element: (
-          <AdminRoute>
-            <AdminDashboard />
-          </AdminRoute>
-        )
+        path: "users",
+        element: <ViewAllUsers />
       },
       {
-        path: "student",
-        element: <StudentRoute>
-          <StudentDashboard />
-        </StudentRoute>
-
+        path: "sessions",
+        element: <ViewAllSessions />
       },
       {
-        path: "tutor",
-        element: 
+        path: "materials",
+        element: <AdminViewAllMaterials></AdminViewAllMaterials>
+      },
+    ]
+  },
+  {
+    path: "/dashboard/tutor",
+    element: (
+      <PrivateRoute>
         <TutorRoute>
-              <TutorDashboard />
+          <TutorLayout />
         </TutorRoute>
-      
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "create",
+        element: <CreateSession />
+      },
+      {
+        path: "view-sessions",
+        element: <ViewSession />
+      },
+      {
+        path: "upload",
+        element: <UploadSession />
+      },
+      {
+        path: "view-materials",
+        element: <ViewALlMateial />
       }
     ]
+  },
+  {
+    path: "/dashboard/student",
+    element: (
+      <PrivateRoute>
+        <StudentRoute>
+          <StudentLayout />
+        </StudentRoute>
+      </PrivateRoute>
+    ),
+    children: [
+
+      {
+        path: "create-note",
+        element: <CreateNote/>
+      },
+      {
+        path: "booked-sessions",
+        element: <ViewBookedSessions />
+      },
+      {
+        path: "manage-notes",
+        element: <ManageNotes />
+      },
+      {
+        path: "study-materials",
+        element: <ViewAllMaterials />
+      },
+    ]
   }
+
 
 ]);
