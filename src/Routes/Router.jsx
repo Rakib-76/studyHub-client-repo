@@ -27,6 +27,8 @@ import ViewAllMaterials from "../Pages/Dashboard/Student/ViewAllMaterials";
 import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers";
 import ViewAllSessions from "../Pages/Dashboard/Admin/ViewAllSessions";
 import AdminViewAllMaterials from "../Pages/Dashboard/Admin/AdminViewAllMaterial";
+import StudySessions from "../Pages/Home/StudySession/StudySessions ";
+import SessionDetails from "../Pages/Home/Details/SessionDetails ";
 
 
 export const router = createBrowserRouter([
@@ -37,6 +39,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home
+      },
+      {
+        path:"/sessions",
+        element:<StudySessions></StudySessions>
+      },
+      {
+        path: "/sessions/:id",
+        element: <SessionDetails />,
       },
 
     ]

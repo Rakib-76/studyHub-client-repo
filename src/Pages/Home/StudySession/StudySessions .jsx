@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import useAxios from "../../../hooks/UseAxios";
+import { Link } from "react-router";
 
 const StudySessions = () => {
     const axiosPublic = useAxios();
-     const [showAll, setShowAll] = useState(false);
+    const [showAll, setShowAll] = useState(false);
 
     const { data: sessions = [], isLoading, isError } = useQuery({
         queryKey: ["studySessions"],
@@ -20,7 +21,7 @@ const StudySessions = () => {
     if (isLoading) return <p className="text-center">Loading...</p>;
     if (isError) return <p className="text-center text-red-500">Failed to load sessions.</p>;
 
-     const visibleSessions = showAll ? sessions : sessions.slice(0, 6);
+    const visibleSessions = showAll ? sessions : sessions.slice(0, 6);
 
 
     return (
@@ -39,16 +40,19 @@ const StudySessions = () => {
                             <div className="flex items-center justify-between">
                                 <span
                                     className={`text-sm font-semibold px-3 py-1 rounded-full ${isClosed(session.registrationEnd)
-                                            ? "bg-red-100 text-red-600"
-                                            : "bg-green-100 text-green-600"
+                                        ? "bg-red-100 text-red-600"
+                                        : "bg-green-100 text-green-600"
                                         }`}
                                 >
                                     {isClosed(session.registrationEnd) ? "Closed" : "Ongoing"}
                                 </span>
 
-                                <button className="text-sm font-medium text-blue-600 hover:underline">
-                                    Read More
-                                </button>
+                                <Link to={`/sessions/${session._id}`}>
+                                    <button className="text-sm font-medium text-blue-600 hover:underline">
+                                        Read More
+                                    </button>
+                                </Link>
+
                             </div>
 
                             <p className="text-xs text-gray-400 mt-3">
