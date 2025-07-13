@@ -29,6 +29,7 @@ import ViewAllSessions from "../Pages/Dashboard/Admin/ViewAllSessions";
 import AdminViewAllMaterials from "../Pages/Dashboard/Admin/AdminViewAllMaterial";
 import StudySessions from "../Pages/Home/StudySession/StudySessions ";
 import SessionDetails from "../Pages/Home/Details/SessionDetails ";
+import TutorList from "../Pages/Home/TutorList/TutorList ";
 
 
 export const router = createBrowserRouter([
@@ -40,14 +41,23 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home
       },
+
+
+
       {
-        path:"/sessions",
-        element:<StudySessions></StudySessions>
+        path: "/tutors",
+        element: <TutorList />,
+      },
+
+      {
+        path: "/sessions",
+        element: <StudySessions></StudySessions>
       },
       {
         path: "/sessions/:id",
         element: <SessionDetails />,
       },
+
 
     ]
   },
@@ -131,7 +141,7 @@ export const router = createBrowserRouter([
 
       {
         path: "create-note",
-        element: <CreateNote/>
+        element: <CreateNote />
       },
       {
         path: "booked-sessions",
