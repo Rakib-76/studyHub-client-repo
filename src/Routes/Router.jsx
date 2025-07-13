@@ -123,7 +123,7 @@ export const router = createBrowserRouter([
         element: <UploadSession />
       },
       {
-        path: "view-materials",
+        path: "materials",
         element: <ViewALlMateial />
       }
     ]
@@ -160,3 +160,5 @@ export const router = createBrowserRouter([
 
 
 ]);
+
+
