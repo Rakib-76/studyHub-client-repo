@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useForm } from "react-hook-form";
-import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 
 const AdminViewSessions = () => {
-  const axiosSecure = UseAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const [selectedSessionId, setSelectedSessionId] = useState(null);
   const { register, handleSubmit, reset } = useForm();
 
