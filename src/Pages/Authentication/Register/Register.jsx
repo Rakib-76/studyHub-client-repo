@@ -231,6 +231,7 @@ import axios from 'axios';
 import useAxios from '../../../hooks/UseAxios';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import UseAuth from '../../../Hook/UseAuth';
+import Swal from 'sweetalert2';
 
 
 const Register = () => {
@@ -246,11 +247,19 @@ const Register = () => {
     createUser(data.email, data.password)
       .then(async (result) => {
         console.log(result.user);
-
+        Swal.fire({
+          title: 'Registration  Successful!',
+          text: 'Welcome back!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
         // update userinfo in the database
         const userInfo = {
           email: data.email,
-           role: data.role, // default role
+          role: data.role, // default role
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString()
         }

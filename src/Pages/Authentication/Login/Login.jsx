@@ -4,6 +4,7 @@ import UseAuth from '../../../Hook/UseAuth';
 import { Link, useNavigate } from 'react-router';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -28,8 +29,16 @@ const Login = () => {
       localStorage.setItem('access-token', token);
       console.log(" JWT token saved");
 
-      alert("Sign in successfully");
-      navigate("/"); 
+      Swal.fire({
+        title: 'Login Successful!',
+        text: 'Welcome back!',
+        icon: 'success',
+        confirmButtonText: 'Continue',
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
+      navigate("/");
     } catch (error) {
       console.error(" Login error:", error);
       alert("Please check email and password");

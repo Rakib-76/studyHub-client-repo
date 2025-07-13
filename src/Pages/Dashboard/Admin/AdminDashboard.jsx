@@ -20,7 +20,7 @@ const AdminDashboard = () => {
                     </NavLink>
 
                     <NavLink
-                        to="users"
+                        to="/dashboard/admin/users"
                         className={({ isActive }) =>
                             `flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700 ${isActive ? "bg-blue-700" : ""
                             }`

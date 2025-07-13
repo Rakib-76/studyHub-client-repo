@@ -4,6 +4,7 @@ import UseAuth from '../../Hook/UseAuth';
 import { FaUserCircle, FaTachometerAlt, FaSignOutAlt } from 'react-icons/fa';
 import StudyHubLogo from './StudyHubLogo/StudyHubLogo';
 import UseUserRole from '../../hooks/UseUserRole';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const { user, logOut } = UseAuth();
@@ -22,7 +23,15 @@ const Navbar = () => {
       .then(() => {
         localStorage.removeItem('access-token');
         navigate('/login');
-        alert('Logout Successfully');
+        Swal.fire({
+          title: 'Login Successful!',
+          text: 'Welcome back!',
+          icon: 'success',
+          confirmButtonText: 'Continue',
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
       })
       .catch((error) => {
         console.error(error.message);

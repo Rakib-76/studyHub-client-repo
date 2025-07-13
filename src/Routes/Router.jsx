@@ -24,12 +24,12 @@ import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ViewBookedSessions from "../Pages/Dashboard/Student/ViewBookedSessions";
 import ManageNotes from "../Pages/Dashboard/Student/ManageNotes";
 import ViewAllMaterials from "../Pages/Dashboard/Student/ViewAllMaterials";
-import ViewAllUsers from "../Pages/Dashboard/Admin/ViewAllUsers";
-import ViewAllSessions from "../Pages/Dashboard/Admin/ViewAllSessions";
 import AdminViewAllMaterials from "../Pages/Dashboard/Admin/AdminViewAllMaterial";
 import StudySessions from "../Pages/Home/StudySession/StudySessions ";
 import SessionDetails from "../Pages/Home/Details/SessionDetails ";
 import TutorList from "../Pages/Home/TutorList/TutorList ";
+import AdminViewUsers from "../Pages/Dashboard/Admin/AdminViewUsers ";
+import AdminViewSessions from "../Pages/Dashboard/Admin/AdminViewSessions ";
 
 
 export const router = createBrowserRouter([
@@ -88,11 +88,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "users",
-        element: <ViewAllUsers />
+        element: <AdminViewUsers />
       },
       {
         path: "sessions",
-        element: <ViewAllSessions />
+        element: <AdminViewSessions />
       },
       {
         path: "materials",
