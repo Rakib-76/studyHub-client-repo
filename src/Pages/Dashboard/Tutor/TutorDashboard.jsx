@@ -33,7 +33,7 @@ const TutorDashboard = () => {
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
           <li><NavLink to="/">🏠 Home</NavLink></li>
           <li><NavLink to="/dashboard/tutor/create">📝 Create Session</NavLink></li>
-          <li><NavLink to="/dashboard/tutor/view-sessions">📚 View Sessions</NavLink></li>
+          <li><NavLink to="/dashboard/tutor/sessions">📚 View Sessions</NavLink></li>
           <li><NavLink to="/dashboard/tutor/upload">📤 Upload Materials</NavLink></li>
           <li><NavLink to="/dashboard/tutor/view-materials">📁 View Materials</NavLink></li>
         </ul>
