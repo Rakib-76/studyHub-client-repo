@@ -258,6 +258,8 @@ const Register = () => {
         });
         // update userinfo in the database
         const userInfo = {
+          name: data.name,        // ADD THIS
+          photoURL: profilePic,
           email: data.email,
           role: data.role, // default role
           created_at: new Date().toISOString(),

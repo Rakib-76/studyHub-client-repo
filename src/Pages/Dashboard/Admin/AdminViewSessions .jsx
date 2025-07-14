@@ -61,7 +61,7 @@ const AdminViewSessions = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axiosSecure.delete(`/admin/sessions/reject/${id}`);
+        await axiosSecure.patch(`/admin/sessions/reject/${id}`);
         Swal.fire("Rejected!", "Session has been removed.", "success");
         refetch();
       } catch (err) {
