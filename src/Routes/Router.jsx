@@ -15,7 +15,6 @@ import StudentRoute from "../PrivateRoutes/StudentRoute";
 import TutorRoute from "../PrivateRoutes/TutorRoute";
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 import ViewSession from "../Pages/Dashboard/Tutor/TutorSessions";
-import UploadSession from "../Pages/Dashboard/Tutor/UploadSession";
 import ViewALlMateial from "../Pages/Dashboard/Tutor/ViewALlMateial";
 import AdminLayout from "../Layout/AdminLayout";
 import TutorLayout from "../Layout/TutorLayout";
@@ -30,7 +29,8 @@ import TutorList from "../Pages/Home/TutorList/TutorList ";
 import AdminViewUsers from "../Pages/Dashboard/Admin/AdminViewUsers ";
 import AdminViewSessions from "../Pages/Dashboard/Admin/AdminViewSessions ";
 import AdminViewMaterials from "../Pages/Dashboard/Admin/AdminViewMaterials";
-import TutorSessions from "../Pages/Dashboard/Tutor/TutorSessions";
+import TutorSessions from "../Pages/Dashboard/Tutor/TutorSessions";;
+import ApproveSessions from "../Pages/Dashboard/Tutor/ApproveSessions";
 
 
 export const router = createBrowserRouter([
@@ -121,7 +121,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "upload",
-        element: <UploadSession />
+        element: <ApproveSessions></ApproveSessions>
       },
       {
         path: "materials",
