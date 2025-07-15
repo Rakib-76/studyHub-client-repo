@@ -15,7 +15,6 @@ import StudentRoute from "../PrivateRoutes/StudentRoute";
 import TutorRoute from "../PrivateRoutes/TutorRoute";
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 import ViewSession from "../Pages/Dashboard/Tutor/TutorSessions";
-import ViewALlMateial from "../Pages/Dashboard/Tutor/ViewALlMateial";
 import AdminLayout from "../Layout/AdminLayout";
 import TutorLayout from "../Layout/TutorLayout";
 import StudentLayout from "../Layout/StudentLayout";
@@ -31,6 +30,7 @@ import AdminViewSessions from "../Pages/Dashboard/Admin/AdminViewSessions ";
 import AdminViewMaterials from "../Pages/Dashboard/Admin/AdminViewMaterials";
 import TutorSessions from "../Pages/Dashboard/Tutor/TutorSessions";;
 import ApproveSessions from "../Pages/Dashboard/Tutor/ApproveSessions";
+import ViewAllMyMaterial from "../Pages/Dashboard/Tutor/ViewALlMateial";
 
 
 export const router = createBrowserRouter([
@@ -125,7 +125,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "materials",
-        element: <ViewALlMateial />
+        element:<ViewAllMyMaterial></ViewAllMyMaterial>
       }
     ]
   },

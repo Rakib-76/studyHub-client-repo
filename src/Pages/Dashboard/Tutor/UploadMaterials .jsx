@@ -5,6 +5,7 @@ import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import axios from "axios";
 
 const UploadMaterials = ({ sessionId }) => {
+     console.log("UploadMaterials received sessionId:", sessionId);
     console.log(sessionId);
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
