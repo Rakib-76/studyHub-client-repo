@@ -41,7 +41,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       console.error(" Login error:", error);
-      alert("Please check email and password");
+      Swal.fire("Please check email and password");
     } finally {
       setLoading(false);
     }
