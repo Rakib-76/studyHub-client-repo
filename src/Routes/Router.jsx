@@ -21,7 +21,6 @@ import StudentLayout from "../Layout/StudentLayout";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ViewBookedSessions from "../Pages/Dashboard/Student/ViewBookedSessions";
 import ManageNotes from "../Pages/Dashboard/Student/ManageNotes";
-import ViewAllMaterials from "../Pages/Dashboard/Student/ViewAllMaterials";
 import StudySessions from "../Pages/Home/StudySession/StudySessions ";
 import SessionDetails from "../Pages/Home/Details/SessionDetails ";
 import TutorList from "../Pages/Home/TutorList/TutorList ";
@@ -32,6 +31,7 @@ import TutorSessions from "../Pages/Dashboard/Tutor/TutorSessions";;
 import ApproveSessions from "../Pages/Dashboard/Tutor/ApproveSessions";
 import ViewAllMyMaterial from "../Pages/Dashboard/Tutor/ViewALlMateial";
 import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
+import StudentStudyMaterials from "../Pages/Dashboard/Student/StudentStudyMaterials";
 // import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 // import UploadMaterials from "../Pages/Dashboard/Tutor/UploadMaterials ";
 
@@ -169,7 +169,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "study-materials",
-        element: <ViewAllMaterials />
+        element: <StudentStudyMaterials></StudentStudyMaterials>
       },
     ]
   }
