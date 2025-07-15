@@ -47,8 +47,10 @@ const ViewBookedSessions = () => {
                   Booked
                 </span>
 
-                <Link to={`/student/booked-sessions/${booking.sessionId}`}>
-                  <button className="text-sm font-medium text-blue-600 hover:underline">
+                <Link to={`/dashboard/student/booked-sessions/${booking.sessionId}`}>
+                  <button className="text-sm font-medium text-blue-600 hover:underline"
+                  
+                  >
                     View Details
                   </button>
                 </Link>

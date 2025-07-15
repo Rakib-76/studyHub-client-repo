@@ -64,7 +64,7 @@ const SessionDetails = () => {
       }
     } catch (error) {
       console.error("Booking failed:", error);
-      Swal.fire("Error", "Something went wrong while booking.", "error");
+      Swal.fire("Error", "You already booked this session.", "error");
     }
   };
 

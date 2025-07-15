@@ -31,6 +31,8 @@ import AdminViewMaterials from "../Pages/Dashboard/Admin/AdminViewMaterials";
 import TutorSessions from "../Pages/Dashboard/Tutor/TutorSessions";;
 import ApproveSessions from "../Pages/Dashboard/Tutor/ApproveSessions";
 import ViewAllMyMaterial from "../Pages/Dashboard/Tutor/ViewALlMateial";
+import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
+// import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 // import UploadMaterials from "../Pages/Dashboard/Tutor/UploadMaterials ";
 
 
@@ -130,7 +132,7 @@ export const router = createBrowserRouter([
       //   path: "upload/:sessionId", // ✅ dynamic route
       //   element: <UploadMaterials />
       // },
-      
+
       {
         path: "materials",
         element: <ViewAllMyMaterial></ViewAllMyMaterial>
@@ -156,6 +158,10 @@ export const router = createBrowserRouter([
       {
         path: "booked-sessions",
         element: <ViewBookedSessions />
+      },
+      {
+        path: "booked-sessions/:id", // ✅ view a booked session in detail
+        element: <BookingDetails />,
       },
       {
         path: "manage-notes",
