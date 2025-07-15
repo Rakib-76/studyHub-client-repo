@@ -31,6 +31,8 @@ import AdminViewMaterials from "../Pages/Dashboard/Admin/AdminViewMaterials";
 import TutorSessions from "../Pages/Dashboard/Tutor/TutorSessions";;
 import ApproveSessions from "../Pages/Dashboard/Tutor/ApproveSessions";
 import ViewAllMyMaterial from "../Pages/Dashboard/Tutor/ViewALlMateial";
+// import UploadMaterials from "../Pages/Dashboard/Tutor/UploadMaterials ";
+
 
 
 export const router = createBrowserRouter([
@@ -97,7 +99,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "materials",
-        element:<AdminViewMaterials></AdminViewMaterials>
+        element: <AdminViewMaterials></AdminViewMaterials>
       },
     ]
   },
@@ -123,10 +125,17 @@ export const router = createBrowserRouter([
         path: "upload",
         element: <ApproveSessions></ApproveSessions>
       },
+
+      // {
+      //   path: "upload/:sessionId", // ✅ dynamic route
+      //   element: <UploadMaterials />
+      // },
+      
       {
         path: "materials",
-        element:<ViewAllMyMaterial></ViewAllMyMaterial>
-      }
+        element: <ViewAllMyMaterial></ViewAllMyMaterial>
+      },
+
     ]
   },
   {

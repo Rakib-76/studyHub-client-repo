@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import UseAuth from "../../../Hook/UseAuth";
 import UploadMaterials from "./UploadMaterials ";
+import { useNavigate } from "react-router";
+
 // import UploadMaterials from "./UploadMaterials";
 
 const ApproveSessions = () => {
@@ -10,13 +12,14 @@ const ApproveSessions = () => {
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedSessionId, setSelectedSessionId] = useState(null);
+    // const navigate = useNavigate();
 
     useEffect(() => {
         if (user?.email) {
             axiosSecure
                 .get(`/tutor/sessions/approved?email=${user.email}`)
                 .then((res) => {
-                    console.log("Fetched sessions:", res.data);
+                    // console.log("Fetched sessions:", res.data);
                     setSessions(res.data || []);
                 })
                 .catch((err) => {
@@ -29,7 +32,7 @@ const ApproveSessions = () => {
 
     if (loading) return <p className="text-center">Loading approved sessions...</p>;
 
-    console.log("Selected session ID:", selectedSessionId);
+    // console.log("Selected session ID:", selectedSessionId);
 
     return (
         <div className="p-6">
@@ -48,7 +51,8 @@ const ApproveSessions = () => {
                             <button
                                 className="btn btn-sm btn-outline btn-primary mt-2"
                                 onClick={() => {
-                                    console.log("Selected session ID:", session._id); // ⬅️ Add this
+                                    //  navigate(`/dashboard/tutor/upload/${session._id}`)
+                                    // console.log("Selected session ID:", session._id); // ⬅️ Add this
                                     setSelectedSessionId(session._id);
                                 }}
                             >

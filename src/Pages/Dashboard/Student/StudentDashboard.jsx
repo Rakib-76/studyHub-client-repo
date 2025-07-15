@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"; // ✅ corrected here
+import { Outlet } from "react-router";   // ✅ added Outlet
 import {
   FaHome,
   FaBookOpen,
@@ -14,7 +15,6 @@ const StudentDashboard = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-gray-800 text-white flex flex-col">
         <nav className="flex-1 p-4 space-y-4">
-          {/* Home link */}
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -77,9 +77,9 @@ const StudentDashboard = () => {
         </nav>
       </aside>
 
-      {/* Content area */}
+      {/* ✅ Content area with Outlet */}
       <main className="flex-1 p-6 bg-gray-100 overflow-auto">
-        {/* Outlet for nested routes */}
+        <Outlet />
       </main>
     </div>
   );

@@ -5,12 +5,13 @@ import { format } from "date-fns";
 import useAxios from "../../../hooks/UseAxios";
 import UseAuth from "../../../Hook/UseAuth";
 import UseUserRole from "../../../hooks/UseUserRole";
+import Swal from "sweetalert2"; // ✅ Added SweetAlert
 
 const SessionDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxios();
   const { user } = UseAuth();
-  const {role} = UseUserRole(); // returns ['student' | 'admin' | 'tutor']
+  const { role } = UseUserRole(); // returns ['student' | 'admin' | 'tutor']
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -38,6 +39,34 @@ const SessionDetails = () => {
   const regClosed = new Date(registrationEnd) < new Date();
   const disabled =
     !user || regClosed || role === "admin" || role === "tutor";
+
+  // ✅ Booking Function
+  const handleBooking = async () => {
+    if (!user) {
+      Swal.fire("Login Required", "Please login to book this session", "warning");
+      return;
+    }
+
+    const bookingInfo = {
+      studentEmail: user.email,
+      sessionId: id,
+      sessionTitle: title,
+      sessionDescription: description,
+      bookedAt: new Date(),
+    };
+
+    try {
+      const res = await axiosPublic.post("/bookings", bookingInfo);
+      if (res.data.insertedId) {
+        Swal.fire("Success", "You have successfully booked this session!", "success");
+      } else {
+        Swal.fire("Info", "You already booked this session.", "info");
+      }
+    } catch (error) {
+      console.error("Booking failed:", error);
+      Swal.fire("Error", "Something went wrong while booking.", "error");
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 my-10 bg-white rounded-xl shadow-md">
@@ -98,8 +127,9 @@ const SessionDetails = () => {
         )}
       </div>
 
-      {/* Book Button */}
+      {/* ✅ Book Button with Booking Logic */}
       <button
+        onClick={handleBooking} // ✅ Booking function
         disabled={disabled}
         className={`px-6 py-2 text-white font-medium rounded ${
           disabled

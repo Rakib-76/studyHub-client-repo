@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import UseAuth from "../../../Hook/UseAuth";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const UploadMaterials = ({ sessionId }) => {
-     console.log("UploadMaterials received sessionId:", sessionId);
     console.log(sessionId);
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
@@ -54,14 +54,14 @@ const UploadMaterials = ({ sessionId }) => {
     try {
       const res = await axiosSecure.post("/tutor/materials", material);
       if (res.data.success) {
-        alert("Material uploaded successfully!");
+        Swal.fire("Material uploaded successfully!");
         reset();
         setImageURL("");
       } else {
-        alert("Upload failed");
+        Swal.fire("Upload failed");
       }
     } catch (error) {
-      alert("Upload error");
+      Swal.fire("Upload error");
     }
   };
 
@@ -139,3 +139,4 @@ const UploadMaterials = ({ sessionId }) => {
 };
 
 export default UploadMaterials;
+
