@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import UseAxiosSecure from '../../../hooks/UseAxiosSecure';
 import UseAuth from '../../../Hook/UseAuth';
 
-const ViewAllMyMaterial = () => {
+const ViewMyMaterials = () => {
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editingId, setEditingId] = useState(null);
+  const [editData, setEditData] = useState({ title: '', resourceLink: '' });
 
   const fetchMaterials = async () => {
     try {
@@ -33,6 +35,26 @@ const ViewAllMyMaterial = () => {
     }
   };
 
+  const handleEditClick = (material) => {
+    setEditingId(material._id);
+    setEditData({ title: material.title, resourceLink: material.resourceLink });
+  };
+
+  const handleUpdate = async (id) => {
+    try {
+      const res = await axiosSecure.patch(`/tutor/materials/${id}`, editData);
+      if (res.data.modifiedCount > 0) {
+        alert('Material updated!');
+        setEditingId(null);
+        fetchMaterials();
+      } else {
+        alert('Update failed');
+      }
+    } catch (err) {
+      console.error('Update error:', err);
+    }
+  };
+
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4 text-center">My Uploaded Materials</h2>
@@ -44,18 +66,62 @@ const ViewAllMyMaterial = () => {
         <div className="grid md:grid-cols-2 gap-6">
           {materials.map((m) => (
             <div key={m._id} className="border p-4 rounded shadow bg-white">
-              <h3 className="text-xl font-semibold">{m.title}</h3>
-              <img src={m.imageURL} alt={m.title} className="h-28 my-2 rounded" />
-              <p><strong>Drive Link:</strong> <a href={m.resourceLink} target="_blank" className="text-blue-600 underline">Open</a></p>
-              <div className="mt-4 flex gap-2">
-                <button
-                  onClick={() => handleDelete(m._id)}
-                  className="btn btn-sm btn-error"
-                >
-                  Delete
-                </button>
-                {/* You can add edit modal or inline update here */}
-              </div>
+              {editingId === m._id ? (
+                <>
+                  <input
+                    type="text"
+                    className="input input-bordered w-full mb-2"
+                    value={editData.title}
+                    onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                    placeholder="Title"
+                  />
+                  <input
+                    type="url"
+                    className="input input-bordered w-full mb-2"
+                    value={editData.resourceLink}
+                    onChange={(e) =>
+                      setEditData({ ...editData, resourceLink: e.target.value })
+                    }
+                    placeholder="Google Drive Link"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleUpdate(m._id)}
+                      className="btn btn-sm btn-success"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => setEditingId(null)}
+                      className="btn btn-sm btn-ghost"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-xl font-semibold">{m.title}</h3>
+                  <img src={m.imageURL} alt={m.title} className="h-28 my-2 rounded" />
+                  <p>
+                    <strong>Drive Link:</strong>{' '}
+                    <a href={m.resourceLink} target="_blank" className="text-blue-600 underline">
+                      Open
+                    </a>
+                  </p>
+                  <div className="mt-4 flex gap-2">
+                    <button onClick={() => handleEditClick(m)} className="btn btn-sm btn-info">
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(m._id)}
+                      className="btn btn-sm btn-error"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
@@ -64,4 +130,4 @@ const ViewAllMyMaterial = () => {
   );
 };
 
-export default ViewAllMyMaterial;
+export default ViewMyMaterials;
