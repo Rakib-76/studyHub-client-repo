@@ -20,6 +20,7 @@ const StudentStudyMaterials = () => {
   // Fetch materials when a session is selected
   useEffect(() => {
     if (selectedSessionId) {
+      console.log("✅ selectedSessionId:", selectedSessionId);
       axiosSecure.get(`/materials/${selectedSessionId}`).then((res) => {
         setMaterials(res.data);
       });

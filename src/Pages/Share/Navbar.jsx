@@ -24,7 +24,7 @@ const Navbar = () => {
         localStorage.removeItem('access-token');
         navigate('/login');
         Swal.fire({
-          title: 'Login Successful!',
+          title: 'Logout Successful!',
           text: 'Welcome back!',
           icon: 'success',
           confirmButtonText: 'Continue',

@@ -36,6 +36,7 @@ const TutorDashboard = () => {
           <li><NavLink to="/dashboard/tutor/sessions">📚 View Sessions</NavLink></li>
           <li><NavLink to="/dashboard/tutor/upload">📤 Upload Materials</NavLink></li>
           <li><NavLink to="/dashboard/tutor/materials">📁 View Materials</NavLink></li>
+          <li><NavLink to="/dashboard/tutor/rejected-sessions">📁 Rejected Sessions</NavLink></li>
         </ul>
       </div>
     </div>

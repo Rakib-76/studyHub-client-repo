@@ -51,18 +51,34 @@ const AdminViewSessions = () => {
   };
 
   const handleReject = async (id) => {
-    const confirm = await Swal.fire({
-      title: "Are you sure?",
-      text: "You are rejecting this session!",
-      icon: "warning",
+    const { value: formValues } = await Swal.fire({
+      title: "Reject Session",
+      html: `
+      <label class="block text-left mb-1 font-medium">Rejection Reason</label>
+      <input id="reason" class="swal2-input" placeholder="Reason..." />
+      <label class="block text-left mb-1 font-medium">Feedback</label>
+      <textarea id="feedback" class="swal2-textarea" placeholder="Feedback..."></textarea>
+    `,
+      focusConfirm: false,
+      preConfirm: () => {
+        const reason = document.getElementById("reason").value;
+        const feedback = document.getElementById("feedback").value;
+
+        if (!reason || !feedback) {
+          Swal.showValidationMessage("Both fields are required");
+          return false;
+        }
+
+        return { reason, feedback };
+      },
       showCancelButton: true,
-      confirmButtonText: "Yes, reject it!",
+      confirmButtonText: "Submit Rejection",
     });
 
-    if (confirm.isConfirmed) {
+    if (formValues) {
       try {
-        await axiosSecure.patch(`/admin/sessions/reject/${id}`);
-        Swal.fire("Rejected!", "Session has been removed.", "success");
+        await axiosSecure.patch(`/admin/sessions/reject/${id}`, formValues);
+        Swal.fire("Rejected!", "Session has been rejected.", "success");
         refetch();
       } catch (err) {
         console.error(err);
@@ -70,6 +86,7 @@ const AdminViewSessions = () => {
       }
     }
   };
+
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
@@ -117,13 +134,12 @@ const AdminViewSessions = () => {
             <p className="text-sm mb-2">
               Status:{" "}
               <span
-                className={`font-medium ${
-                  session.status === "pending"
+                className={`font-medium ${session.status === "pending"
                     ? "text-yellow-600"
                     : session.status === "approved"
-                    ? "text-green-600"
-                    : "text-red-600"
-                }`}
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
               >
                 {session.status}
               </span>

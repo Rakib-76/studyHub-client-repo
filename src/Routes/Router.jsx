@@ -32,6 +32,7 @@ import ApproveSessions from "../Pages/Dashboard/Tutor/ApproveSessions";
 import ViewAllMyMaterial from "../Pages/Dashboard/Tutor/ViewALlMateial";
 import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 import StudentStudyMaterials from "../Pages/Dashboard/Student/StudentStudyMaterials";
+import RejectedSessions from "../Pages/Dashboard/Tutor/RejectedSession";
 // import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 // import UploadMaterials from "../Pages/Dashboard/Tutor/UploadMaterials ";
 
@@ -62,6 +63,7 @@ export const router = createBrowserRouter([
         path: "/sessions/:id",
         element: <SessionDetails />,
       },
+
 
 
     ]
@@ -137,6 +139,11 @@ export const router = createBrowserRouter([
         path: "materials",
         element: <ViewAllMyMaterial></ViewAllMyMaterial>
       },
+
+      {
+        path: "rejected-sessions",
+        element: <RejectedSessions />,
+      }
 
     ]
   },
