@@ -62,7 +62,9 @@ If you are developing a production application, we recommend using TypeScript wi
 - **Image Hosting:** Cloudinary  
 - **Deployment:** Vercel (Frontend), Render or Railway (Backend)
 
----
+--------
 
 > ⚠️ For educational/demo purposes only. Use secure login credentials in production.
+
+
 
