@@ -1,42 +1,46 @@
 import React, { useEffect, useState } from "react";
 import UseAuth from "../../../Hook/UseAuth";
-// import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
-import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
+import Swal from "sweetalert2";
 
 const StudentStudyMaterials = () => {
   const { user } = UseAuth();
   const axiosSecure = UseAxiosSecure();
+
   const [bookedSessions, setBookedSessions] = useState([]);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Fetch student's booked sessions
+  // ✅ Fetch Booked Sessions
   useEffect(() => {
     if (user?.email) {
       axiosSecure
-        .get(`/bookings?email=${user.email}`)
-        .then((res) => setBookedSessions(res.data))
+        .get(`/materials?email=${user.email}`)
+        .then((res) => {
+          // console.log("📦 Booked sessions:", res.data);
+          setBookedSessions(res.data);
+        })
         .catch((err) => {
-          console.error("Error loading booked sessions:", err);
+          console.error("❌ Booked sessions error:", err.response?.data || err.message);
           Swal.fire("Error", "Failed to load booked sessions", "error");
         });
     }
   }, [user?.email, axiosSecure]);
 
-  // ✅ Fetch materials when session is selected
+  // ✅ Fetch Materials for Selected Session
   useEffect(() => {
     if (selectedSessionId) {
       setLoading(true);
       axiosSecure
         .get(`/materials/${selectedSessionId}`)
         .then((res) => {
+          console.log("📥 Materials:", res.data);
           setMaterials(res.data);
           setLoading(false);
         })
         .catch((err) => {
-          console.error("Error loading materials:", err);
+          console.error("❌ Materials error:", err.response?.data || err.message);
           Swal.fire("Error", "Failed to load materials", "error");
           setLoading(false);
         });
@@ -49,12 +53,15 @@ const StudentStudyMaterials = () => {
         Your Study Materials
       </h2>
 
-      {/* ✅ Booked Sessions List */}
+      {/* ✅ Booked Sessions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
         {bookedSessions.map((session) => (
           <div
             key={session.sessionId}
-            onClick={() => setSelectedSessionId(session.sessionId)}
+            onClick={() => {
+              console.log("📍 Clicked:", session.sessionId);
+              setSelectedSessionId(session.sessionId);
+            }}
             className={`p-4 border rounded shadow bg-white cursor-pointer hover:border-blue-500 transition ${
               selectedSessionId === session.sessionId ? "border-blue-600" : ""
             }`}
@@ -69,7 +76,7 @@ const StudentStudyMaterials = () => {
         ))}
       </div>
 
-      {/* ✅ Show Materials */}
+      {/* ✅ Materials View */}
       {selectedSessionId && (
         <div>
           <h3 className="text-2xl font-semibold mb-4 text-gray-800">
@@ -89,16 +96,16 @@ const StudentStudyMaterials = () => {
                   key={material._id}
                   className="border rounded p-4 bg-white shadow-sm flex flex-col items-center"
                 >
-                  {/* ✅ Image preview */}
-                  {material.imageUrl ? (
+                  {/* ✅ Image + Download */}
+                  {material.imageURL ? (
                     <>
                       <img
-                        src={material.imageUrl}
+                        src={material.imageURL}
                         alt="Material"
                         className="w-full h-40 object-cover rounded mb-3"
                       />
                       <a
-                        href={material.imageUrl}
+                        href={material.imageURL}
                         download
                         className="btn btn-sm btn-outline btn-primary mb-2"
                       >
@@ -109,10 +116,10 @@ const StudentStudyMaterials = () => {
                     <p className="text-gray-400">No image uploaded.</p>
                   )}
 
-                  {/* ✅ Drive link */}
-                  {material.driveLink ? (
+                  {/* ✅ Google Drive Link */}
+                  {material.resourceLink ? (
                     <a
-                      href={material.driveLink}
+                      href={material.resourceLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 underline text-sm"
@@ -120,7 +127,7 @@ const StudentStudyMaterials = () => {
                       View Google Drive Link
                     </a>
                   ) : (
-                    <p className="text-gray-400">No drive link provided.</p>
+                    <p className="text-gray-400">No Drive link provided.</p>
                   )}
                 </div>
               ))}

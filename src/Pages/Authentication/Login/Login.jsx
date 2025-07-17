@@ -60,6 +60,7 @@ const Login = () => {
             <label className="label">Email</label>
             <input
               type="email"
+              autoComplete="off"
               {...register('email')}
               className="input"
               placeholder="Email"
@@ -68,6 +69,7 @@ const Login = () => {
             <label className="label">Password</label>
             <input
               type="password"
+              autoComplete="new-password"
               {...register('password', {
                 required: true,
                 minLength: 6
