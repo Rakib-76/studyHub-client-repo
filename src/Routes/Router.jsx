@@ -33,6 +33,7 @@ import ViewAllMyMaterial from "../Pages/Dashboard/Tutor/ViewALlMateial";
 import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 import StudentStudyMaterials from "../Pages/Dashboard/Student/StudentStudyMaterials";
 import RejectedSessions from "../Pages/Dashboard/Tutor/RejectedSession";
+import ApprovedSessions from "../Pages/Home/Approve-Session/ApprovedSessions";
 // import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 // import UploadMaterials from "../Pages/Dashboard/Tutor/UploadMaterials ";
 
@@ -59,6 +60,12 @@ export const router = createBrowserRouter([
         path: "/sessions",
         element: <StudySessions></StudySessions>
       },
+
+      { path:"/approved-sessions" ,
+        element:<ApprovedSessions />
+
+      },
+
       {
         path: "/sessions/:id",
         element: <SessionDetails />,
