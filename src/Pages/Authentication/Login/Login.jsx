@@ -21,9 +21,12 @@ const Login = () => {
       console.log(" Logged in:", user);
 
 
-      const res = await axios.post('http://localhost:3000/jwt', {
+      const res = await axios.post('https://twelveth-assignment-server.vercel.app/jwt', {
         email: user.email
       });
+      // const res = await axios.post('http://localhost:3000/jwt', {
+      //   email: user.email
+      // });
 
       const token = res.data.token;
       localStorage.setItem('access-token', token);

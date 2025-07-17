@@ -5,20 +5,39 @@ import { format } from "date-fns";
 import useAxios from "../../../hooks/UseAxios";
 import UseAuth from "../../../Hook/UseAuth";
 import UseUserRole from "../../../hooks/UseUserRole";
-import Swal from "sweetalert2"; // ✅ Added SweetAlert
+import Swal from "sweetalert2";
 
 const SessionDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxios();
   const { user } = UseAuth();
-  const { role } = UseUserRole(); // returns ['student' | 'admin' | 'tutor']
+  const { role } = UseUserRole(); // ['student', 'admin', 'tutor']
   const [session, setSession] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
+  // ✅ Fetch session details
   useEffect(() => {
     axiosPublic.get(`/sessions/${id}`).then((res) => {
       setSession(res.data);
     });
   }, [id, axiosPublic]);
+
+  // ✅ Fetch reviews for this session
+  useEffect(() => {
+    if (id) {
+      axiosPublic.get(`/reviews/${id}`).then((res) => {
+        setReviews(res.data);
+      });
+    }
+  }, [id, axiosPublic]);
+
+  // ✅ Calculate average rating
+  const calculateAverageRating = () => {
+    if (reviews.length === 0) return 0;
+    const total = reviews.reduce((acc, curr) => acc + parseFloat(curr.rating || 0), 0);
+    return (total / reviews.length).toFixed(1);
+  };
+  const averageRating = calculateAverageRating();
 
   if (!session) return <div className="text-center mt-20">Loading...</div>;
 
@@ -32,15 +51,12 @@ const SessionDetails = () => {
     classEnd,
     duration,
     fee,
-    rating = 0,
-    reviews = [],
   } = session;
 
   const regClosed = new Date(registrationEnd) < new Date();
-  const disabled =
-    !user || regClosed || role === "admin" || role === "tutor";
+  const disabled = !user || regClosed || role === "admin" || role === "tutor";
 
-  // ✅ Booking Function
+  // ✅ Booking Logic
   const handleBooking = async () => {
     if (!user) {
       Swal.fire("Login Required", "Please login to book this session", "warning");
@@ -81,10 +97,10 @@ const SessionDetails = () => {
         {[...Array(5)].map((_, index) => (
           <FaStar
             key={index}
-            className={index < rating ? "text-yellow-400" : "text-gray-300"}
+            className={index < Math.round(averageRating) ? "text-yellow-400" : "text-gray-300"}
           />
         ))}
-        <span className="ml-2 text-sm text-gray-500">({rating} / 5)</span>
+        <span className="ml-2 text-sm text-gray-500">({averageRating} / 5)</span>
       </div>
 
       <p className="text-gray-700 mb-6">{description}</p>
@@ -109,16 +125,17 @@ const SessionDetails = () => {
         </p>
       </div>
 
+      {/* ✅ Student Reviews Section */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-2">Reviews:</h3>
         {reviews.length > 0 ? (
           <ul className="space-y-2">
             {reviews.map((review, idx) => (
-              <li
-                key={idx}
-                className="bg-gray-100 p-3 rounded shadow-sm text-sm"
-              >
+              <li key={idx} className="bg-gray-100 p-3 rounded shadow-sm text-sm">
                 <strong>{review.name}:</strong> {review.comment}
+                <div className="text-yellow-500 text-xs mt-1">
+                  Rating: {review.rating} / 5
+                </div>
               </li>
             ))}
           </ul>
@@ -127,9 +144,9 @@ const SessionDetails = () => {
         )}
       </div>
 
-      {/* ✅ Book Button with Booking Logic */}
+      {/* ✅ Book Now Button */}
       <button
-        onClick={handleBooking} // ✅ Booking function
+        onClick={handleBooking}
         disabled={disabled}
         className={`px-6 py-2 text-white font-medium rounded ${
           disabled

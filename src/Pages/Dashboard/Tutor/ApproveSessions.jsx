@@ -17,7 +17,7 @@ const ApproveSessions = () => {
     useEffect(() => {
         if (user?.email) {
             axiosSecure
-                .get(`/tutor/sessions/approved?email=${user.email}`)
+                .get(`/tutor/sessions/approved?email=${user?.email}`)
                 .then((res) => {
                     // console.log("Fetched sessions:", res.data);
                     setSessions(res.data || []);
