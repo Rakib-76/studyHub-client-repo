@@ -8,11 +8,17 @@ const ManageNotes = () => {
   const axiosSecure = UseAxiosSecure();
   const [notes, setNotes] = useState([]);
   const [editingNote, setEditingNote] = useState(null);
+   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+     setLoading(true);
     axiosSecure.get(`/notes?email=${user.email}`).then((res) => {
       setNotes(res.data);
-    });
+      setLoading(false);
+    })
+    .catch(() => {
+        setLoading(false);
+      });
   }, [user.email, axiosSecure]);
 
   const handleDelete = (id) => {
