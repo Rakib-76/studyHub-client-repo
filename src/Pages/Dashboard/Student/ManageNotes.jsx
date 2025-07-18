@@ -49,9 +49,11 @@ const ManageNotes = () => {
     if (res.data.modifiedCount > 0) {
       Swal.fire("Updated!", "Note updated successfully.", "success");
       setEditingNote(null);
+       setLoading(true);
       // Reload notes
       const res = await axiosSecure.get(`/notes?email=${user.email}`);
       setNotes(res.data);
+       setLoading(false);
     }
   };
 
