@@ -8,17 +8,12 @@ const ManageNotes = () => {
   const axiosSecure = UseAxiosSecure();
   const [notes, setNotes] = useState([]);
   const [editingNote, setEditingNote] = useState(null);
-   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
-     setLoading(true);
     axiosSecure.get(`/notes?email=${user.email}`).then((res) => {
       setNotes(res.data);
-      setLoading(false);
-    })
-    .catch(() => {
-        setLoading(false);
-      });
+    });
   }, [user.email, axiosSecure]);
 
   const handleDelete = (id) => {
@@ -49,11 +44,9 @@ const ManageNotes = () => {
     if (res.data.modifiedCount > 0) {
       Swal.fire("Updated!", "Note updated successfully.", "success");
       setEditingNote(null);
-       setLoading(true);
       // Reload notes
       const res = await axiosSecure.get(`/notes?email=${user.email}`);
       setNotes(res.data);
-       setLoading(false);
     }
   };
 

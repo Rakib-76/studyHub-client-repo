@@ -3,6 +3,7 @@ import UseAuth from '../../../Hook/UseAuth';
 import axios from 'axios';
 import useAxios from '../../../hooks/UseAxios';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const SocialLogin = () => {
   const { signInWithGoogle } = UseAuth();
@@ -61,6 +62,13 @@ const SocialLogin = () => {
 
         const res = await axiosInstance.get(`/users/${user.email}`);
         const role = res.data.role;
+          Swal.fire({
+          icon: 'success',
+          title: 'Login Successful',
+          text: `Welcome, ${user.displayName || 'User'}!`,
+          timer: 2000,
+          showConfirmButton: false
+        });
 
         if (role === 'admin') navigate('/dashboard/admin');
         else if (role === 'tutor') navigate('/dashboard/tutor');
