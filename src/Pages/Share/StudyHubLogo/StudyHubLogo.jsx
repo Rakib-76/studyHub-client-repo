@@ -6,7 +6,7 @@ const StudyHubLogo = () => {
     return (
         <Link to='/'>
             <div className='flex items-end'>
-                <img className='mb-2' src={logo} alt="" />
+                <img className='mb-1' src={logo} alt="" />
                 <p className='text-3xl -ml-2.5 font-extrabold'>StudyHub</p>
             </div>
         </Link>

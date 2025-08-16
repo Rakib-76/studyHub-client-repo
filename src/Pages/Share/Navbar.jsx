@@ -13,8 +13,8 @@ const Navbar = () => {
 
   const navItems = (
     <>
-      <li><NavLink to="/tutors">Tutors</NavLink></li>
-      <li><NavLink to="/sessions">Study Sessions</NavLink></li>
+      <li className=''><NavLink to="/tutors">Tutors</NavLink></li>
+      <li className=''><NavLink to="/sessions">Study Sessions</NavLink></li>
     </>
   );
 
@@ -54,15 +54,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-4">
+    <div className="navbar bg-base-100 shadow-sm px-4 rounded-2xl">
       <div className="navbar-start">
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link to="/" className=" text-sm ">
           <StudyHubLogo />
         </Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+        <ul className="menu menu-horizontal px-1 ">{navItems}</ul>
       </div>
 
       <div className="navbar-end flex items-center gap-3">
@@ -72,7 +72,7 @@ const Navbar = () => {
             <button
               onClick={handleDashboardClick}
               disabled={loading}
-              className="btn btn-outline btn-sm flex items-center gap-1"
+              className="btn border border-[#154D71] hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F] btn-sm flex items-center gap-1"
               title={loading ? "Checking role..." : "Go to Dashboard"}
             >
               <FaTachometerAlt /> {loading ? 'Checking Role...' : 'Dashboard'}
