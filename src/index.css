@@ -3,9 +3,15 @@
 @plugin "daisyui";
 
 
-.font-urbanist {
+.font-urbanist{
   font-family: "Urbanist", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+.active{
+  text-decoration: underline;
+  text-decoration-color: black;
+  text-underline-offset: 0.2rem;
+  display:inline-block;  
 }
