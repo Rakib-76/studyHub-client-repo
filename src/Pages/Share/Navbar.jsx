@@ -112,7 +112,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Link to="/login" className=" btn-sm flex justify-center items-center gap-1 btn border border-[#154D71] hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F]"> <FaSignInAlt/>Login</Link>
+            <Link to="/login" className=" btn-sm flex justify-center items-center gap-1 btn border border-[#154D71] hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F]"> <FaSignInAlt />Login</Link>
             <Link to="/register" className=" btn-sm flex justify-center items-center gap-1 btn border border-[#154D71] hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F]"> <FaUserPlus />Sign Up</Link>
           </>
         )}
