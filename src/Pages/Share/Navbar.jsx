@@ -14,10 +14,16 @@ const Navbar = () => {
   const navItems = (
     <>
       <li className='hover:text-[#FF9B2F] font-bold'>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li className='hover:text-[#FF9B2F] font-bold'>
         <NavLink to="/tutors">Tutors</NavLink>
       </li>
       <li className='hover:text-[#FF9B2F] font-bold'>
         <NavLink to="/sessions">Study Sessions</NavLink>
+      </li>
+      <li className='hover:text-[#FF9B2F] font-bold'>
+        <NavLink to="/about">about</NavLink>
       </li>
     </>
   );
@@ -68,7 +74,7 @@ const Navbar = () => {
 
       {/* Right: Large Screen Menu */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="gap-4 menu-horizontal px-1">{navItems}</ul>
+        <ul className="gap-x-10 menu-horizontal px-1">{navItems}</ul>
       </div>
 
       {/* Right: Large Screen Auth Buttons */}
@@ -144,6 +150,9 @@ const Navbar = () => {
               <li className="border-b border-gray-200 hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F] ">
                 <NavLink to="/sessions" className="py-2 uppercase font-bold">Study Sessions</NavLink>
               </li>
+              <li className="border-b border-gray-200 hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F] ">
+                <NavLink to="/sessions" className="py-2 uppercase font-bold">About</NavLink>
+              </li>
 
               {/* Dashboard */}
               {user && (
@@ -151,7 +160,7 @@ const Navbar = () => {
                   <button
                     onClick={handleDashboardClick}
                     disabled={loading}
-                    className=" font-bold border-gray-400 border-b py-2 flex items-center uppercase"
+                    className=" font-bold hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F]  border-b border-base-300 py-2 flex items-center uppercase"
                   >
                     <FaTachometerAlt className='text-xl' /> {loading ? 'Checking Role...' : 'Dashboard'}
                   </button>
@@ -163,7 +172,7 @@ const Navbar = () => {
                 <li className="flex justify-center">
                   <button
                     onClick={handleLogOut}
-                    className=" text-red-600 font-bold"
+                    className=" text-red-600 font-bold hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F] "
                   >
                     <FaSignOutAlt className="text-xl" /> LOGOUT
                   </button>
