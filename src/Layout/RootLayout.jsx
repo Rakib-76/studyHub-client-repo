@@ -5,8 +5,10 @@ import Footer from '../Pages/Share/Footer/Footer';
 
 const RootLayout = () => {
     return (
-        <div className='space-y-6 p-4'>
-            <Navbar></Navbar>
+        <div className='space-y-2 p-4'>
+            <div className='mb-15'>
+                <Navbar></Navbar>
+            </div>
             <Outlet></Outlet>
             <Footer></Footer>
         </div>
