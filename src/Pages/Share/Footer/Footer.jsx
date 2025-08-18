@@ -5,7 +5,7 @@ import { Link as ScrollLink } from 'react-scroll'; // 👈 import scroll link
 
 const Footer = () => {
     return (
-        <footer className="footer footer-horizontal footer-center bg-gradient-to-r from-[#78C841] via-transparent to-[#B4E50D] text-neutral-content p-10">
+        <footer className="footer footer-horizontal footer-center bg-green-800 text-neutral-content p-10">
             <aside>
                <div className='text-black'>
                  <StudyHubLogo />
@@ -15,7 +15,7 @@ const Footer = () => {
                         to="about"      // section er id
                         smooth={true}   // smooth scroll
                         duration={500}  // 0.5s e scroll hobe
-                        className=" text-black cursor-pointer hover:underline hover:text-green-700"
+                        className=" text-black cursor-pointer hover:underline hover:text-white"
                     >
                         About
                     </ScrollLink>
@@ -24,7 +24,7 @@ const Footer = () => {
                         to="contact"
                         smooth={true}
                         duration={500}
-                        className="cursor-pointer text-black hover:underline  hover:text-green-700"
+                        className="cursor-pointer text-black hover:underline  hover:text-white"
                     >
                         Contact
                     </ScrollLink>
@@ -33,7 +33,7 @@ const Footer = () => {
                         to="projects"
                         smooth={true}
                         duration={500}
-                        className="cursor-pointer text-black hover:underline  hover:text-green-700"
+                        className="cursor-pointer text-black hover:underline  hover:text-white"
                     >
                         Projects
                     </ScrollLink>
