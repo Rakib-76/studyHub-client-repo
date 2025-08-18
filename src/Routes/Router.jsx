@@ -34,8 +34,8 @@ import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
 import StudentStudyMaterials from "../Pages/Dashboard/Student/StudentStudyMaterials";
 import RejectedSessions from "../Pages/Dashboard/Tutor/RejectedSession";
 import ApprovedSessions from "../Pages/Home/Approve-Session/ApprovedSessions";
-// import BookingDetails from "../Pages/Dashboard/Student/BookingDetails";
-// import UploadMaterials from "../Pages/Dashboard/Tutor/UploadMaterials ";
+import AboutSection from "../Pages/Home/About/About";
+
 
 
 
@@ -69,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: "/sessions/:id",
         element: <SessionDetails />,
+      },
+      {
+        path: "/about",
+        element: <AboutSection />,
       },
 
 

@@ -2,10 +2,10 @@ import React from 'react';
 import Banner from './Banner/Banner';
 import Comment from './Comments/Comment';
 import StudySessions from './StudySession/StudySessions ';
-import Testimonials from './Testimonial/Testimonials';
 import FAQSection from './FAQ/FAQSection';
 import ApprovedSessions from './Approve-Session/ApprovedSessions';
 import About from './About/About';
+import FeaturesSection from './Feature/FearuresSection';
 
 const Home = () => {
   return (
@@ -13,10 +13,11 @@ const Home = () => {
       <Banner></Banner>
       {/* <StudySessions></StudySessions> */}
       <ApprovedSessions></ApprovedSessions>
-      <Testimonials/>
+      <About></About>
+      <FeaturesSection></FeaturesSection>
       <FAQSection/>
       <Comment></Comment>
-      |<About></About>
+      
     </div>
   );
 };

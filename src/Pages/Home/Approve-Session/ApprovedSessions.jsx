@@ -56,7 +56,7 @@ const StudySessions = () => {
                 </span>
 
                 <Link to={`/sessions/${session._id}`}>
-                  <button className="text-sm font-medium text-blue-600 hover:underline">
+                  <button className="text-sm font-bold text-[#FF9B2F]  hover:underline">
                     Read More
                   </button>
                 </Link>

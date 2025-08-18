@@ -3,12 +3,12 @@ import { FaCheckCircle, FaAward } from "react-icons/fa";
 
 const AboutSection = () => {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16 flex flex-col lg:flex-row gap-12 items-center">
+    <section className="max-w-7xl mx-auto px-4 py-16 flex flex-col lg:flex-row gap-12 items-center">
       {/* Left Content */}
       <div className="flex-1">
-        <p className="text-[#78C841] font-bold text-2xl mb-2">About Our University</p>
+        <p className="text-[#78C841] font-bold text-2xl mb-2">About Our StudyHub</p>
         <h2 className="text-4xl font-bold mb-4">
-          A Few Words About the University
+          A Few Words About the StudyHub
         </h2>
         <p className="text-gray-600 mb-6">
           Education is a vital aspect of human development, providing
@@ -33,7 +33,7 @@ const AboutSection = () => {
         </div>
 
         {/* Award Badge */}
-        <div className="flex items-center gap-3 bg-yellow-100 text-green-700 font-semibold px-4 py-2 rounded-lg w-fit">
+        <div className="flex items-center gap-3 bg-[#78C841] text-black font-semibold px-4 py-2 rounded-lg w-fit">
           <FaAward className="text-2xl" /> 20+ Winning award
         </div>
       </div>
