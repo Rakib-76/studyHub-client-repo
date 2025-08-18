@@ -5,10 +5,10 @@ import CommentCard from './CommentCard';
 
 const comments = [
   { name: 'John Doe', profession: 'Software Engineer', profile: 'https://i.pravatar.cc/100?img=1', comment: 'A posture corrector works by providing support and gentle alignment...' },
-  { name: 'Sarah Khan', profession: 'Physiotherapist', profile: 'https://i.pravatar.cc/100?img=2', comment: 'It gently pulls your shoulders back to prevent slouching...' },
+  { name: 'Sarah Khan', profession: 'Frontend Developer', profile: 'https://i.pravatar.cc/100?img=2', comment: 'It gently pulls your shoulders back to prevent slouching...' },
   { name: 'Alice Brown', profession: 'Fitness Coach', profile: 'https://i.pravatar.cc/100?img=3', comment: 'Wearing a posture corrector daily can improve your overall health...' },
-  { name: 'Michael Smith', profession: 'Chiropractor', profile: 'https://i.pravatar.cc/100?img=4', comment: 'It is important to pair a posture corrector with exercises.' },
-  { name: 'Emma Wilson', profession: 'Yoga Instructor', profile: 'https://i.pravatar.cc/100?img=5', comment: 'Posture support helps to relieve neck and back pain.' },
+  { name: 'Michael Smith', profession: 'Full Stack Developer', profile: 'https://i.pravatar.cc/100?img=4', comment: 'It is important to pair a posture corrector with exercises.' },
+  { name: 'Emma Wilson', profession: 'MERN Stack Developer', profile: 'https://i.pravatar.cc/100?img=5', comment: 'Posture support helps to relieve neck and back pain.' },
 ];
 
 
@@ -43,7 +43,7 @@ const Comment = () => {
 
   return (
     <div className=" mx-auto py-10 px-4">
-      <h2 className="text-3xl font-bold text-center mb-10">Successful Student Comments</h2>
+      <h2 className="text-5xl font-bold text-center mb-10">Successful Student Comments</h2>
 
       {/* Slider Area */}
       <div className="relative overflow-hidden h-[380px]">
@@ -74,7 +74,7 @@ const Comment = () => {
       </div>
 
       {/* Dots */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center space-x-2">
         {comments.map((_, i) => (
           <button
             key={i}
@@ -84,16 +84,6 @@ const Comment = () => {
             }`}
           ></button>
         ))}
-      </div>
-
-      {/* Navigation Arrows */}
-      <div className="flex justify-center mt-6 gap-4">
-        <button onClick={prev} className="btn btn-circle btn-outline">
-          <FaArrowLeft />
-        </button>
-        <button onClick={next} className="btn btn-circle btn-outline">
-          <FaArrowRight />
-        </button>
       </div>
     </div>
   );

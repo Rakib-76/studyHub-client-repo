@@ -54,7 +54,7 @@ const FAQSection = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="px-6 py-2 bg-[#FF9B2F] text-black  font-medium rounded hover: transition"
+                className="px-6 py-2 bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F] text-black  font-medium rounded hover: transition"
               >
                 Submit Now </motion.button>
             </fieldset>

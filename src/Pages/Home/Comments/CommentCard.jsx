@@ -9,16 +9,16 @@ const CommentCard = ({ data, isActive }) => {
 
     // Here they use conditional rendering to show active card full opacity and passing and comming card are showing 50 opacity .
     
-      className={`p-6 rounded-xl shadow-lg border border-dashed transition-all duration-300 bg-white ${
+      className={`p-6  shadow-lg bg-[#78C841] hover:bg-[#eaeced] transition-all duration-300 ${
         isActive ? 'opacity-100 scale-100' : 'opacity-50 scale-90'
       }`}
     >
-      <div className="text-blue-500 mb-3">
-        <FaCommentAlt className="text-xl" />
+      <div className="text-blue-500 mb-3 flex justify-center items-center h-16 w-16 mx-auto rounded-full">
+        <FaCommentAlt className="text-2xl" />
       </div>
-      <p className="text-gray-700 mb-4">{data.comment}</p>
-      <div className="flex items-center gap-4 mt-3">
-        <img src={data.profile} alt={data.name} className="w-12 h-12 rounded-full object-cover" />
+      <p className="text-gray-700 mb-4 text-center">{data.comment}</p>
+      <div className=" text-center gap-4 mt-3">
+        <img src={data.profile} alt={data.name} className="w-12 mx-auto h-12 rounded-full object-cover" />
         <div>
           <h4 className="text-lg font-semibold text-gray-800">{data.name}</h4>
           <p className="text-sm text-gray-500">{data.profession}</p>
