@@ -35,6 +35,7 @@ import StudentStudyMaterials from "../Pages/Dashboard/Student/StudentStudyMateri
 import RejectedSessions from "../Pages/Dashboard/Tutor/RejectedSession";
 import ApprovedSessions from "../Pages/Home/Approve-Session/ApprovedSessions";
 import AboutSection from "../Pages/Home/About/About";
+import ProfilePage from "../Pages/ProfilePage/ProfilePage";
 
 
 
@@ -141,11 +142,6 @@ export const router = createBrowserRouter([
         element: <ApproveSessions></ApproveSessions>
       },
 
-      // {
-      //   path: "upload/:sessionId", // ✅ dynamic route
-      //   element: <UploadMaterials />
-      // },
-
       {
         path: "materials",
         element: <ViewAllMyMaterial></ViewAllMyMaterial>
@@ -189,6 +185,12 @@ export const router = createBrowserRouter([
         path: "study-materials",
         element: <StudentStudyMaterials></StudentStudyMaterials>
       },
+      
+      {
+        path: "profile-page",
+        element: <ProfilePage></ProfilePage>
+      },
+      
     ]
   }
 

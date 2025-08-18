@@ -97,6 +97,18 @@ const StudentDashboard = () => {
               <FaFolderOpen />
               View Study Materials
             </NavLink>
+            
+            <NavLink
+              to="profile-page"
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 ${
+                  isActive ? "bg-gray-700" : ""
+                }`
+              }
+            >
+              <FaFolderOpen />
+             About
+            </NavLink>
           </nav>
         </div>
       </aside>

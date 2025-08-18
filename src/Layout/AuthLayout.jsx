@@ -5,13 +5,13 @@ import ProFastLogo from '../Pages/Share/StudyHubLogo/StudyHubLogo';
 
 const AuthLayout = () => {
     return (
-        <div className="bg-base-200 p-12">
+        <div className=" lg:p-20 max-w-9/12 mx-auto">
             <ProFastLogo></ProFastLogo>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className='flex-1'>
                     <img
                         src={authImg}
-                        className="max-w-sm rounded-lg shadow-2xl"
+                        className="rounded-lg shadow-2xl"
                     />
                 </div>
 

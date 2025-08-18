@@ -23,7 +23,7 @@ const CommentCard = ({ data, isActive }) => {
           <h4 className="text-lg font-semibold text-gray-800">{data.name}</h4>
           <p className="text-sm text-gray-500">{data.profession}</p>
         </div>
-      </div>
+      </div>   
     </div>
   );
 };
