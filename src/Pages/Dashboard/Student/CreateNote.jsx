@@ -30,7 +30,7 @@ const CreateNote = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-white p-6 rounded-lg shadow mt-10">
+    <div className="max-w-xl mx-auto bg-white dark:bg-black p-6 rounded-lg shadow mt-10">
       <h2 className="text-2xl font-bold mb-6 text-center">Create a Note</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
@@ -67,7 +67,7 @@ const CreateNote = () => {
           ></textarea>
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button type="submit" className="btn bg-green-700 w-full">
           Submit Note
         </button>
       </form>

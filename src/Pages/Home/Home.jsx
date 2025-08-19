@@ -24,8 +24,8 @@ const Home = () => {
       <section id='projects'>
         <HeroSection></HeroSection>
       </section>
+        <FAQSection/>
       <InfoSection></InfoSection>
-      <FAQSection/>
       <Comment></Comment>
       <ScrollToTop></ScrollToTop>
       

@@ -43,7 +43,7 @@ const Comment = () => {
 
   return (
     <div className=" mx-auto py-10 px-4">
-      <h2 className="text-5xl font-bold text-center mb-10">Successful Student Comments</h2>
+      <h2 className="text-5xl font-bold text-center mb-10 dark:text-black">Successful Student Comments</h2>
 
       {/* Slider Area */}
       <div className="relative overflow-hidden h-[380px]">

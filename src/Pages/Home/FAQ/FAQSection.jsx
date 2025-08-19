@@ -4,21 +4,21 @@ import { motion } from "framer-motion";
 const FAQSection = () => {
 
   return (
-    <section className="py-16 px-6 max-w-10/12 mx-auto mt-20">
+    <section className=" px-6 max-w-8xl mx-auto py-10">
 
       {/* main container */}
       <div className="lg:flex lg:gap-10 flex-cols items-center">
         {/* faq question container */}
         <div className=" flex-1 space-y-2">
           <h2 className="text-5xl font-bold text-black mb-5 ">Get every single answer here.</h2>
-          <p className="text-xl">A business or organization established to provide a particular service, typically one that involves a organizing transactions.</p>
+          <p className="text-xl dark:text-black">A business or organization established to provide a particular service, typically one that involves a organizing transactions.</p>
           <div className="p-[2px] rounded-lg bg-gradient-to-r from-green-400 via-yellow-400 to-pink-500">
             <div className="collapse collapse-arrow rounded-lg bg-[#eaeced]">
               <input type="radio" name="my-accordion-2" defaultChecked />
-              <div className="collapse-title font-semibold">
+              <div className="collapse-title font-semibold dark:text-black">
                 How do I book a session?
               </div>
-              <div className="collapse-content text-sm">
+              <div className="collapse-content text-sm dark:text-black">
                 Login as a student, go to Booked Sessions, and click 'Book Now' on an active session.
               </div>
             </div>
@@ -27,15 +27,15 @@ const FAQSection = () => {
           <div className="p-[2px] rounded-lg bg-gradient-to-r from-green-400 via-yellow-400 to-pink-500">
             <div className="collapse collapse-arrow bg-[#eaeced]">
               <input type="radio" name="my-accordion-2" />
-              <div className="collapse-title font-semibold">How do tutors upload materials?</div>
-              <div className="collapse-content text-sm">Tutors can upload images and drive links under the 'Upload Materials' tab in their dashboard.</div>
+              <div className="collapse-title font-semibold dark:text-black">How do tutors upload materials?</div>
+              <div className="collapse-content text-sm dark:text-black">Tutors can upload images and drive links under the 'Upload Materials' tab in their dashboard.</div>
             </div>
           </div>
           <div className="p-[2px] rounded-lg bg-gradient-to-r from-green-400 via-yellow-400 to-pink-500">
             <div className="collapse collapse-arrow  bg-[#eaeced]">
               <input type="radio" name="my-accordion-2" />
-              <div className="collapse-title font-semibold">Who can approve sessions?</div>
-              <div className="collapse-content text-sm">Only admins can approve or reject study sessions submitted by tutors.</div>
+              <div className="collapse-title font-semibold dark:text-black">Who can approve sessions?</div>
+              <div className="collapse-content text-sm dark:text-black">Only admins can approve or reject study sessions submitted by tutors.</div>
             </div>
           </div>
         </div>

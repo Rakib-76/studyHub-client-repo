@@ -49,7 +49,7 @@ const StudentStudyMaterials = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      <h2 className="text-3xl font-bold text-center mb-6 text-blue-700">
+      <h2 className="text-3xl font-bold text-center mb-6 text-black">
         Your Study Materials
       </h2>
 

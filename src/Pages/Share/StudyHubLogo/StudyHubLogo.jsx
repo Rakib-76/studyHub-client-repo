@@ -7,7 +7,7 @@ const StudyHubLogo = () => {
         <Link to='/'>
             <div className='flex items-end'>
                 <img className='mb-1' src={logo} alt="" />
-                <p className='text-3xl -ml-2.5 font-extrabold'>StudyHub</p>
+                <p className='text-3xl -ml-2.5 font-extrabold dark:text-black '>StudyHub</p>
             </div>
         </Link>
     );

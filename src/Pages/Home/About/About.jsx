@@ -7,7 +7,7 @@ const AboutSection = () => {
       {/* Left Content */}
       <div className="flex-1">
         <p className="text-[#78C841] font-bold text-2xl mb-2">About Our StudyHub</p>
-        <h2 className="text-4xl font-bold mb-4">
+        <h2 className="text-4xl font-bold mb-4 dark:text-black">
           A Few Words About the StudyHub
         </h2>
         <p className="text-gray-600 mb-6">
@@ -18,16 +18,16 @@ const AboutSection = () => {
 
         {/* Features List */}
         <div className="grid grid-cols-2 gap-y-2 mb-6">
-          <p className="flex items-center gap-2">
+          <p className="flex items-center gap-2 dark:text-black">
             <FaCheckCircle className="text-[#78C841]" /> 9 Product Market Fit Mistakes
           </p>
-          <p className="flex items-center gap-2">
+          <p className="flex items-center gap-2 dark:text-black">
             <FaCheckCircle className="text-[#78C841]" /> How to Get Any Startup Idea
           </p>
-          <p className="flex items-center gap-2">
+          <p className="flex items-center gap-2 dark:text-black">
             <FaCheckCircle className="text-[#78C841]" /> 100 Product Management tip
           </p>
-          <p className="flex items-center gap-2">
+          <p className="flex items-center gap-2 dark:text-black">
             <FaCheckCircle className="text-[#78C841]" /> 3 Ways to Improve Your Converter
           </p>
         </div>

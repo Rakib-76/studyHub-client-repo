@@ -4,7 +4,7 @@ import { FaChalkboardTeacher, FaDollarSign, FaClock } from "react-icons/fa";
 
 const FeaturesSection = () => {
   return (
-    <section className="relative py-16 overflow-hidden ">
+    <section className="relative py-16 overflow-hidden md:mb-48 -mb-20 lg:-mb-10">
       {/* Animated Background */}
       <motion.div
         className="absolute max-w-full inset-0 bg-gradient-to-r from-[#78C841] via-transparent to-[#B4E50D]"
@@ -21,7 +21,7 @@ const FeaturesSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold mb-4">Our Best Features</h2>
+          <h2 className="text-4xl font-bold mb-4 dark:text-black">Our Best Features</h2>
           <p className="text-gray-600 mb-6">
             Special wedding garments are often worn, and the ceremony is sometimes 
             followed by a wedding reception. Music, poetry.
@@ -33,7 +33,7 @@ const FeaturesSection = () => {
               <FaChalkboardTeacher />
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">Skilled Teachers</h3>
+              <h3 className="text-xl font-semibold mb-2 dark:text-black">Skilled Teachers</h3>
               <p className="text-gray-600">
                 Special wedding garments are often worn, and the ceremony is 
                 sometimes followed by a wedding reception. Music, poetry, 
@@ -48,7 +48,7 @@ const FeaturesSection = () => {
               <FaDollarSign />
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">Affordable Courses</h3>
+              <h3 className="text-xl font-semibold mb-2 dark:text-black">Affordable Courses</h3>
               <p className="text-gray-600">
                 Special wedding garments are often worn, and the ceremony is 
                 sometimes followed by a wedding reception. Music, poetry, 
@@ -63,7 +63,7 @@ const FeaturesSection = () => {
               <FaClock />
             </div>
             <div>
-              <h3 className="text-xl font-semibold mb-2">Efficient & Flexible</h3>
+              <h3 className="text-xl font-semibold mb-2 dark:text-black">Efficient & Flexible</h3>
               <p className="text-gray-600">
                 Special wedding garments are often worn, and the ceremony is 
                 sometimes followed by a wedding reception. Music, poetry, 
@@ -83,7 +83,7 @@ const FeaturesSection = () => {
           <img
             src="https://i.postimg.cc/3xjRHtVp/istockphoto-1354640844-2048x2048.jpg"
             alt="Features"
-            className="w-full min-h-screen object-cover rounded-lg  shadow-lg"
+            className="w-full lg:min-h-screen object-cover rounded-lg  shadow-lg"
           />
         </motion.div>
       </div>

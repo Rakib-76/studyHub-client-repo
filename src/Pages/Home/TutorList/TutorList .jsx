@@ -17,7 +17,7 @@ const TutorList = () => {
   if (isError) return <p className="text-center mt-10 text-red-500">Failed to load tutors.</p>;
 
   return (
-    <div className="max-w-8xl mx-auto p-10">
+    <div className="max-w-8xl mx-auto lg:p-20 mt-30">
       <h2 className="text-5xl font-bold text-center mb-8 text-black">All Tutors</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

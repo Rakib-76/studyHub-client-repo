@@ -64,7 +64,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-4 rounded-2xl fixed z-50 top-0">
+    <div className="navbar bg-base-100 dark:bg-amber-100 shadow-sm px-4 -mx-4  fixed z-50 top-0">
       {/* Left: Logo */}
       <div className="navbar-start">
         <Link to="/" className="text-sm">
@@ -122,7 +122,7 @@ const Navbar = () => {
       <div className="navbar-end lg:hidden">
         <div className="dropdown dropdown-end">
           {/* Hamburger Button */}
-          <label tabIndex={0} className="btn btn-ghost">
+          <label tabIndex={0} className="btn btn-ghost dark:text-black">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
               fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -151,7 +151,7 @@ const Navbar = () => {
                 <NavLink to="/sessions" className="py-2 uppercase font-bold">Study Sessions</NavLink>
               </li>
               <li className="border-b border-gray-200 hover:bg-gradient-to-r from-[#B4E50D] to-[#FF9B2F] ">
-                <NavLink to="/sessions" className="py-2 uppercase font-bold">About</NavLink>
+                <NavLink to="/about" className="py-2 uppercase font-bold">About</NavLink>
               </li>
 
               {/* Dashboard */}

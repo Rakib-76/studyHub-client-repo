@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const InfoSection = () => {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+    <section className="max-w-8xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center lg:mb-20">
       {/* Image */}
       <div>
         <img
@@ -15,7 +15,7 @@ const InfoSection = () => {
 
       {/* Text Content */}
       <div>
-        <h2 className="text-5xl font-bold mb-4">Admission & Aid</h2>
+        <h2 className="text-5xl font-bold mb-4 dark:text-black">Admission & Aid</h2>
         <p className="text-gray-700 mb-4">
           Our community is being called to reimagine the future. As the only
           university where a renowned design school comes together with premier

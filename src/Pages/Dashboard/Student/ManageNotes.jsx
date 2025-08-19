@@ -52,7 +52,7 @@ const ManageNotes = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 mt-10">
-      <h2 className="text-2xl font-bold mb-4 text-center">Manage My Notes</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center dark:text-black">Manage My Notes</h2>
 
       {notes.length === 0 ? (
         <p className="text-center text-gray-500">No notes found.</p>
@@ -63,8 +63,8 @@ const ManageNotes = () => {
               key={note._id}
               className="p-4 border rounded shadow-md bg-white space-y-2"
             >
-              <h3 className="font-semibold text-lg">{note.title}</h3>
-              <p>{note.description}</p>
+              <h3 className="font-semibold text-lg dark:text-black">{note.title}</h3>
+              <p className="dark:text-black">{note.description}</p>
 
               <div className="flex gap-3">
                 <button

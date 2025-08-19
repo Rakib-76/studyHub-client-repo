@@ -26,7 +26,7 @@ const AdminViewUsers = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-700 mb-6">
+      <h2 className="text-5xl md:text-3xl font-bold text-center text-black mb-6">
         All Users
       </h2>
 

@@ -15,7 +15,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold mb-4">
+          <h1 className="text-5xl font-bold mb-4 dark:text-black">
             We're <span className="text-[#78C841] underline">Qeducato</span> & We're Different
           </h1>
           <p className="text-gray-700 text-lg">

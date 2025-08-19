@@ -25,7 +25,7 @@ const StudySessions = () => {
   const visibleSessions = showAll ? sessions : sessions.slice(0, 8);
 
   return (
-    <div className="mx-auto px-10 py-10">
+    <div className="lg:mx-auto lg:px-10 lg:py-10 mt-30">
       <h2 className="text-5xl font-bold text-center mb-8 text-black">
         Available Study Sessions
       </h2>
