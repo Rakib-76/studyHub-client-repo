@@ -13,7 +13,7 @@ If you are developing a production application, we recommend using TypeScript wi
 
 # EduStudy - Online Study Session Platform
 
-**Live Site:** [https://zap-shift-502f8.web.app](https://twelveth-assignment-server.vercel.app)
+**Live Site:** https://zap-shift-502f8.web.app
 
 **Admin Credentials**  
 - **Username (Email):** rakib11@gmail.com  
